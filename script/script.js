@@ -33,6 +33,7 @@ for(const btn of btnQuantity){
    
    })
 }
+const array = []
 // add to cart 
 document.getElementById('btn-add-to-cart').addEventListener('click', function(){
    const quantityNumber = parseInt( document.getElementById('quantity-number').innerText)
@@ -40,6 +41,18 @@ document.getElementById('btn-add-to-cart').addEventListener('click', function(){
    if(quantityNumber > 0){
       document.getElementById('btn-checkout').classList.remove('hidden')
       document.getElementById('checkout-number').innerText = quantityNumber;
+      const colorName = document.querySelector('div.border-purple-800').id;
+      const size = document.querySelector('button.border-blue-700').id;
+      const price = document.querySelector('button.border-blue-700').innerText.split(' ')[1].split('$')[1];
+      array.push({
+         Image: colorName + ".png",
+         size: size, 
+         title: "this is title",
+         color: colorName,
+         quantity: quantityNumber,
+         price : quantityNumber * price,
+      })
+
    }
    else{
       alert('godi konta nibi thik kor bolod')
@@ -49,4 +62,24 @@ document.getElementById('btn-checkout').addEventListener('click', function(){
    document.getElementById('images-section div').classList.add('hidden')
    document.getElementById('text-section-div').classList.add('hidden')
    document.getElementById('main-hrd-section -hidden').classList.remove('hidden')
+   for( const items of array){
+      const item = items;
+      const container = document.getElementById('added-main-text')
+      const div = document.createElement('div')
+      div.innerHTML=`
+      <div class="flex justify-between items-center border-b mb-2">
+      <div class="flex items-center gap-2">
+       <img class="w-10 h-10 " src="${'../images/'}${item.Image}" alt="">
+       <h1>${item.title}</h1>
+      </div>
+      <div class="flex items-center gap-22 mr-8">
+      <p>${item.color}</p>
+      <p>${item.size}</p>
+      <p>${item.quantity}</p>
+      <p>$${item.price}</p>
+      </div>
+      </div>
+      `
+      container.appendChild(div)
+   }
 })
