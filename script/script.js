@@ -8,6 +8,9 @@ color.addEventListener('click', function(e){
     }
     e.target.classList.add('border-purple-800')
     e.target.classList.remove('border-gray-300')
+    const imagesP = document.getElementById('images-product')
+    const colorName = e.target.id
+    imagesP.src = "../images/" + colorName + ".png" 
 })
 }
 // size
